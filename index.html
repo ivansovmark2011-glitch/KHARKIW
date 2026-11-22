@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ПРАВИЛА KHARKIW RP</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap');
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
+        body { background-color: #050a14; color: #ffffff; min-height: 100vh; overflow-x: hidden; position: relative; }
+        #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; }
+        .bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(14, 116, 244, 0.15) 0%, rgba(5, 10, 20, 0.92) 80%); z-index: -1; pointer-events: none; }
+        header { text-align: center; padding: 35px 20px 15px; }
+        header div { font-size: 2.4rem; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; color: #ffffff; text-shadow: 0 0 15px #1e90ff, 0 0 30px rgba(30, 144, 255, 0.6); }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        .logo-box { margin: 15px 0 35px; text-align: center; }
+        .custom-logo { width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(135deg, #0b192c 0%, #112d57 100%); border: 3px solid #1e90ff; box-shadow: 0 0 25px rgba(30, 144, 255, 0.5), inset 0 0 20px rgba(30, 144, 255, 0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto; }
+        .custom-logo span:first-child { font-size: 1.5rem; font-weight: 900; color: #ffffff; letter-spacing: 1px; }
+        .custom-logo span:last-child { font-size: 1.1rem; font-weight: 700; color: #38bdf8; }
+        .buttons-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; width: 100%; }
+        .rule-btn { background: rgba(13, 27, 48, 0.75); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 20px 24px; color: #ffffff; font-size: 1.05rem; font-weight: 700; text-align: center; cursor: pointer; backdrop-filter: blur(8px); transition: all 0.25s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); text-transform: uppercase; letter-spacing: 1px; }
+        .rule-btn:hover { background: rgba(30, 144, 255, 0.25); border-color: #38bdf8; transform: translateY(-3px); box-shadow: 0 0 20px rgba(30, 144, 255, 0.5); }
+        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(2, 6, 15, 0.85); backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 20px; }
+        .modal.active { display: flex; animation: fadeIn 0.2s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+        .modal-content { background: #0a1424; border: 1px solid #1e90ff; box-shadow: 0 0 35px rgba(30, 144, 255, 0.4); border-radius: 16px; max-width: 700px; width: 100%; max-height: 80vh; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+        .modal-header { padding: 20px 25px; background: rgba(30, 144, 255, 0.12); border-bottom: 1px solid rgba(56, 189, 248, 0.25); display: flex; justify-content: space-between; align-items: center; }
+        .modal-header h2 { font-size: 1.3rem; color: #38bdf8; text-transform: uppercase; }
+        .close-btn { font-size: 2rem; line-height: 1; color: #94a3b8; cursor: pointer; transition: color 0.2s; }
+        .close-btn:hover { color: #ffffff; }
+        .modal-body { padding: 25px; overflow-y: auto; line-height: 1.65; color: #e2e8f0; font-size: 0.95rem; }
+        .modal-body p { margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+        .modal-body p:last-child { border-bottom: none; margin-bottom: 0; }
+        .rule-num { color: #38bdf8; font-weight: 700; margin-right: 6px; }
+        .punishment { display: inline-block; margin-top: 4px; font-size: 0.85rem; color: #60a5fa; background: rgba(30, 144, 255, 0.15); padding: 2px 8px; border-radius: 4px; }
+        .modal-body::-webkit-scrollbar { width: 6px; }
+        .modal-body::-webkit-scrollbar-thumb { background: #1e90ff; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+    <div class="bg-overlay"></div>
+    <header><div>ПРАВИЛА KHARKIW RP</div></header>
+    <div class="container">
+        <div class="logo-box">
+            <div class="custom-logo"><span>KHARKIW</span><span>RP</span></div>
+        </div>
+        <div class="buttons-grid" id="categories-container"></div>
+    </div>
+    <div class="modal" id="rules-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Заголовок</h2>
+                <span class="close-btn" id="close-modal">&times;</span>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+    <script>
+        const rulesData = [
+            {
+                title: "Общие положения",
+                rules: [
+                    { num: "1.1", text: "Незнание правил не освобождает вас от ответственности.", punish: "Наказание: согласно регламенту" },
+                    { num: "1.2", text: "Запрещено использование любых сторонних софтов, читов и скриптов.", punish: "Наказание: Бан навсегда" },
+                    { num: "1.3", text: "Запрещены любые оскорбления родных и близких в чате.", punish: "Наказание: Бан от 7 дней" }
+                ]
+            },
+            {
+                title: "RP Термины",
+                rules: [
+                    { num: "2.1", text: "DM (DeathMatch) — убийство или нанесение урона без причины.", punish: "Наказание: Деморган 60 минут" },
+                    { num: "2.2", text: "DB (DriveBy) — убийство с водительского места или транспортом.", punish: "Наказание: Деморган 60 минут" },
+                    { num: "2.3", text: "MG (MetaGaming) — использование реальной информации в игровой чат.", punish: "Наказание: Мут 30 минут" }
+                ]
+            },
+            {
+                title: "Правила гос. структур",
+                rules: [
+                    { num: "3.1", text: "Сотрудникам гос. фракций запрещено превышать должностные полномочия.", punish: "Наказание: Выговор / Варн" },
+                    { num: "3.2", text: "Запрещено проводить задержания в зеленых зонах без оснований.", punish: "Наказание: Деморган 90 минут" }
+                ]
+            },
+            {
+                title: "Правила ОПГ / Криминала",
+                rules: [
+                    { num: "4.1", text: "Похищения разрешены составом от 3 человек при наличии оружия.", punish: "Наказание: Деморган 60 минут" },
+                    { num: "4.2", text: "Запрещено грабить игроков ниже 3 уровня.", punish: "Наказание: Деморган 120 минут" }
+                ]
+            }
+        ];
+        const container = document.getElementById('categories-container');
+        const modal = document.getElementById('rules-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
+        const closeBtn = document.getElementById('close-modal');
+        rulesData.forEach((category) => {
+            const btn = document.createElement('div');
+            btn.className = 'rule-btn';
+            btn.textContent = category.title;
+            btn.onclick = () => openModal(category);
+            container.appendChild(btn);
+        });
+        function openModal(category) {
+            modalTitle.textContent = category.title;
+            modalBody.innerHTML = category.rules.map(r => `
+                <p>
+                    <span class="rule-num">${r.num}</span> ${r.text}
+                    ${r.punish ? `<br><span class="punishment">${r.punish}</span>` : ''}
+                </p>
+            `).join('');
+            modal.classList.add('active');
+        }
+        closeBtn.onclick = () => modal.classList.remove('active');
+        window.onclick = (e) => { if (e.target === modal) modal.classList.remove('active'); };
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        for (let i = 0; i < 65; i++) {
+            particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.random() * 2.5 + 1, dx: (Math.random() - 0.5) * 0.7, dy: (Math.random() - 0.5) * 0.7 });
+        }
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((p, idx) => {
+                p.x += p.dx; p.y += p.dy;
+                if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fillStyle = 'rgba(56, 189, 248, 0.7)'; ctx.fill();
+                for (let j = idx + 1; j < particles.length; j++) {
+                    const p2 = particles[j];
+                    const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if (dist < 130) {
+                        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(30, 144, 255, ${1 - dist / 130})`; ctx.lineWidth = 0.6; ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
+
