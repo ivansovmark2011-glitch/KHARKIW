@@ -1,147 +1,573 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ПРАВИЛА KHARKIW RP</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap');
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
-        body { background-color: #050a14; color: #ffffff; min-height: 100vh; overflow-x: hidden; position: relative; }
-        #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; }
-        .bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(14, 116, 244, 0.15) 0%, rgba(5, 10, 20, 0.92) 80%); z-index: -1; pointer-events: none; }
-        header { text-align: center; padding: 35px 20px 15px; }
-        header div { font-size: 2.4rem; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; color: #ffffff; text-shadow: 0 0 15px #1e90ff, 0 0 30px rgba(30, 144, 255, 0.6); }
-        .container { max-width: 900px; margin: 0 auto; padding: 20px; display: flex; flex-direction: column; align-items: center; }
-        .logo-box { margin: 15px 0 35px; text-align: center; }
-        .custom-logo { width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(135deg, #0b192c 0%, #112d57 100%); border: 3px solid #1e90ff; box-shadow: 0 0 25px rgba(30, 144, 255, 0.5), inset 0 0 20px rgba(30, 144, 255, 0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto; }
-        .custom-logo span:first-child { font-size: 1.5rem; font-weight: 900; color: #ffffff; letter-spacing: 1px; }
-        .custom-logo span:last-child { font-size: 1.1rem; font-weight: 700; color: #38bdf8; }
-        .buttons-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; width: 100%; }
-        .rule-btn { background: rgba(13, 27, 48, 0.75); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 20px 24px; color: #ffffff; font-size: 1.05rem; font-weight: 700; text-align: center; cursor: pointer; backdrop-filter: blur(8px); transition: all 0.25s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); text-transform: uppercase; letter-spacing: 1px; }
-        .rule-btn:hover { background: rgba(30, 144, 255, 0.25); border-color: #38bdf8; transform: translateY(-3px); box-shadow: 0 0 20px rgba(30, 144, 255, 0.5); }
-        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(2, 6, 15, 0.85); backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 20px; }
-        .modal.active { display: flex; animation: fadeIn 0.2s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
-        .modal-content { background: #0a1424; border: 1px solid #1e90ff; box-shadow: 0 0 35px rgba(30, 144, 255, 0.4); border-radius: 16px; max-width: 700px; width: 100%; max-height: 80vh; display: flex; flex-direction: column; position: relative; overflow: hidden; }
-        .modal-header { padding: 20px 25px; background: rgba(30, 144, 255, 0.12); border-bottom: 1px solid rgba(56, 189, 248, 0.25); display: flex; justify-content: space-between; align-items: center; }
-        .modal-header h2 { font-size: 1.3rem; color: #38bdf8; text-transform: uppercase; }
-        .close-btn { font-size: 2rem; line-height: 1; color: #94a3b8; cursor: pointer; transition: color 0.2s; }
-        .close-btn:hover { color: #ffffff; }
-        .modal-body { padding: 25px; overflow-y: auto; line-height: 1.65; color: #e2e8f0; font-size: 0.95rem; }
-        .modal-body p { margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
-        .modal-body p:last-child { border-bottom: none; margin-bottom: 0; }
-        .rule-num { color: #38bdf8; font-weight: 700; margin-right: 6px; }
-        .punishment { display: inline-block; margin-top: 4px; font-size: 0.85rem; color: #60a5fa; background: rgba(30, 144, 255, 0.15); padding: 2px 8px; border-radius: 4px; }
-        .modal-body::-webkit-scrollbar { width: 6px; }
-        .modal-body::-webkit-scrollbar-thumb { background: #1e90ff; border-radius: 3px; }
+        body {
+            background-color: #0b0f0c;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 15px;
+        }
+        h1 {
+            color: #39ff14;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(57, 255, 20, 0.6);
+        }
+        .section-title {
+            color: #39ff14;
+            border-left: 4px solid #39ff14;
+            padding-left: 10px;
+            margin-top: 30px;
+            font-size: 20px;
+            text-shadow: 0 0 8px rgba(57, 255, 20, 0.4);
+        }
+        .card {
+            background: #121814;
+            border: 2px solid #1f3322;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+        }
+        .rule-num {
+            color: #39ff14;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .punishment {
+            border: 1px solid #ff5500;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 10px;
+            background: #1a0f0a;
+            color: #ffaa88;
+            font-weight: bold;
+        }
+        .punishment-ban {
+            border-color: #ff3333;
+            background: #1a0a0a;
+            color: #ff8888;
+        }
     </style>
 </head>
 <body>
-    <canvas id="bg-canvas"></canvas>
-    <div class="bg-overlay"></div>
-    <header><div>ПРАВИЛА KHARKIW RP</div></header>
-    <div class="container">
-        <div class="logo-box">
-            <div class="custom-logo"><span>KHARKIW</span><span>RP</span></div>
-        </div>
-        <div class="buttons-grid" id="categories-container"></div>
+
+    <h1>ПРАВИЛА KHARKIW RP</h1>
+
+    <!-- §1 -->
+    <div class="section-title">§1. Повага, антибулінг, особистий простір</div>
+    <div class="card">
+        <div class="rule-num">§1.1</div>
+        <div>Образи, булінг, порушення особистого простору. Поважайте інших персонажів та не використовуйте образи як спосіб відігравання RP.</div>
+        <div class="punishment">ПОКАРАННЯ: Попередження або штраф 5000€</div>
     </div>
-    <div class="modal" id="rules-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modal-title">Заголовок</h2>
-                <span class="close-btn" id="close-modal">&times;</span>
-            </div>
-            <div class="modal-body" id="modal-body"></div>
-        </div>
+    <div class="card">
+        <div class="rule-num">§1.2</div>
+        <div>Образи працівника при виконанні службових обов'язків.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 6000€</div>
     </div>
-    <script>
-        const rulesData = [
-            {
-                title: "Общие положения",
-                rules: [
-                    { num: "1.1", text: "Незнание правил не освобождает вас от ответственности.", punish: "Наказание: согласно регламенту" },
-                    { num: "1.2", text: "Запрещено использование любых сторонних софтов, читов и скриптов.", punish: "Наказание: Бан навсегда" },
-                    { num: "1.3", text: "Запрещены любые оскорбления родных и близких в чате.", punish: "Наказание: Бан от 7 дней" }
-                ]
-            },
-            {
-                title: "RP Термины",
-                rules: [
-                    { num: "2.1", text: "DM (DeathMatch) — убийство или нанесение урона без причины.", punish: "Наказание: Деморган 60 минут" },
-                    { num: "2.2", text: "DB (DriveBy) — убийство с водительского места или транспортом.", punish: "Наказание: Деморган 60 минут" },
-                    { num: "2.3", text: "MG (MetaGaming) — использование реальной информации в игровой чат.", punish: "Наказание: Мут 30 минут" }
-                ]
-            },
-            {
-                title: "Правила гос. структур",
-                rules: [
-                    { num: "3.1", text: "Сотрудникам гос. фракций запрещено превышать должностные полномочия.", punish: "Наказание: Выговор / Варн" },
-                    { num: "3.2", text: "Запрещено проводить задержания в зеленых зонах без оснований.", punish: "Наказание: Деморган 90 минут" }
-                ]
-            },
-            {
-                title: "Правила ОПГ / Криминала",
-                rules: [
-                    { num: "4.1", text: "Похищения разрешены составом от 3 человек при наличии оружия.", punish: "Наказание: Деморган 60 минут" },
-                    { num: "4.2", text: "Запрещено грабить игроков ниже 3 уровня.", punish: "Наказание: Деморган 120 минут" }
-                ]
-            }
-        ];
-        const container = document.getElementById('categories-container');
-        const modal = document.getElementById('rules-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalBody = document.getElementById('modal-body');
-        const closeBtn = document.getElementById('close-modal');
-        rulesData.forEach((category) => {
-            const btn = document.createElement('div');
-            btn.className = 'rule-btn';
-            btn.textContent = category.title;
-            btn.onclick = () => openModal(category);
-            container.appendChild(btn);
-        });
-        function openModal(category) {
-            modalTitle.textContent = category.title;
-            modalBody.innerHTML = category.rules.map(r => `
-                <p>
-                    <span class="rule-num">${r.num}</span> ${r.text}
-                    ${r.punish ? `<br><span class="punishment">${r.punish}</span>` : ''}
-                </p>
-            `).join('');
-            modal.classList.add('active');
-        }
-        closeBtn.onclick = () => modal.classList.remove('active');
-        window.onclick = (e) => { if (e.target === modal) modal.classList.remove('active'); };
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-        for (let i = 0; i < 65; i++) {
-            particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.random() * 2.5 + 1, dx: (Math.random() - 0.5) * 0.7, dy: (Math.random() - 0.5) * 0.7 });
-        }
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach((p, idx) => {
-                p.x += p.dx; p.y += p.dy;
-                if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-                if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
-                ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fillStyle = 'rgba(56, 189, 248, 0.7)'; ctx.fill();
-                for (let j = idx + 1; j < particles.length; j++) {
-                    const p2 = particles[j];
-                    const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-                    if (dist < 130) {
-                        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y);
-                        ctx.strokeStyle = `rgba(30, 144, 255, ${1 - dist / 130})`; ctx.lineWidth = 0.6; ctx.stroke();
-                    }
-                }
-            });
-            requestAnimationFrame(animate);
-        }
-        animate();
-    </script>
+    <div class="card">
+        <div class="rule-num">§1.3</div>
+        <div>Образи батьків.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: 3 доби</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§1.4</div>
+        <div>Згадування батьків а також якісь висловлювання у сторону батьків.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 8000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§1.5</div>
+        <div>Погрози життю або здоров'ю у реальному житті.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 6500€</div>
+    </div>
+
+    <!-- §2 -->
+    <div class="section-title">§2. ПДР (Правила дорожнього руху)</div>
+    <div class="card">
+        <div class="rule-num">§2.1</div>
+        <div>Неправильне паркування (не на паркінгах).</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 4000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§2.2</div>
+        <div>Розворот у заборонених місцях (мости, тунелі тощо).</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 3000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§2.3</div>
+        <div>Їзда по зустрічній смузі (крім дозволених випадків).</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 4000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§2.4</div>
+        <div>Неввімкнені фари в темний час / погану видимість / поза містом.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 3000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§2.5</div>
+        <div>Проїзд на червоний сигнал світлофора.</div>
+        <div class="punishment">ПОКАРАННЯ: Автоматичний штраф 100€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§2.6</div>
+        <div>Надмірне перевищення швидкості (>200 км/год).</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 4000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§2.7</div>
+        <div>Об'їзд шлагбаума на залізничному переїзді.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 4000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§2.8</div>
+        <div>Невикористання поворотників / аварійки при русі заднім ходом.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 5000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§2.9</div>
+        <div>Рух поза дорогами (поля, узбіччя тощо).</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 3500€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§2.10</div>
+        <div>Необережна їзда (вихляння).</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 2000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§2.11</div>
+        <div>Не зниження швидкості до 30 км/год перед пішохідним переходом.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 1500€ (водій) / 2500€ (пішоходи)</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§2.12</div>
+        <div>Порушення черги на коловому русі.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 2000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§2.13</div>
+        <div>Обгін у заборонених місцях (переходи, суцільна лінія тощо).</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 4000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§2.14</div>
+        <div>Втеча з місця ДТП.</div>
+        <div class="punishment">ПОКАРАННЯ: Попередження або штраф 4000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§2.15</div>
+        <div>Рух мопедів/скутерів не по крайній правій смузі або на автомагістралі. / Сільськогосподарський транспорт у місті.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Штраф 4000€ або депорт до 1 доби</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§2.16</div>
+        <div>Ігнорування вимоги зупинки під час погоні.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Штраф 3500€ або депорт до 2 діб</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§2.18</div>
+        <div>Використання маячків без службової необхідності.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 1700€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§2.19</div>
+        <div>Заїзд у Автосервіс (Тюнінг) під час погоні заборонено.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Депорт 1 доба</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§2.20</div>
+        <div>Їзда на мопеді з розшуком.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Депорт 1 доба</div>
+    </div>
+
+    <!-- §3 -->
+    <div class="section-title">§3. Зелені зони (Green Zone)</div>
+    <div class="card">
+        <div class="rule-num">§3.1</div>
+        <div>Перебування в розшуку в зеленій зоні (без винятків).</div>
+        <div class="punishment">ПОКАРАННЯ: Вихід за 1 хвилину</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§3.2</div>
+        <div>Перебувати зі зброєю в руках у зеленій зоні.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 4000$</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§3.2 (додатково)</div>
+        <div>Провокувати конфлікти, ображати, розпочинати бійки в ГЗ. / Перебувати в масці / приховувати обличчя в ГЗ.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Штраф / депорт (залежить від тяжкості)</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§3.2 (демонстрація)</div>
+        <div>Діставати / демонструвати / використовувати зброю в ГЗ.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 4000$</div>
+    </div>
+
+    <!-- §4 -->
+    <div class="section-title">§4. КПП та блокпости</div>
+    <div class="card">
+        <div class="rule-num">§4.1</div>
+        <div>Ігнорування вимоги зупинки на КПП.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 5500€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§4.2</div>
+        <div>Використання зброї на КПП.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 8000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§4.3</div>
+        <div>Не повідомлення про наявність зброї на КПП.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Штраф / депорт</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§4.4</div>
+        <div>Відмова від перевірки документів.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 4000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§4.5</div>
+        <div>Перевірка транспорту без RP-причини (з боку поліції).</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 6000€</div>
+    </div>
+
+    <!-- §5 -->
+    <div class="section-title">§5. Зброя та ліцензія</div>
+    <div class="card">
+        <div class="rule-num">§5.1</div>
+        <div>Використання зброї без ліцензії.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 3000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§5.2</div>
+        <div>Використання зброї без обґрунтованих RP-причин.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Депорт 1 день або штраф 8000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§5.3</div>
+        <div>Відкрите носіння зброї.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 5000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§5.4</div>
+        <div>Використання зброї у людному місці без підстав.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 7000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§5.5</div>
+        <div>Передача зброї третім особам.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 5000€</div>
+    </div>
+
+    <!-- §6 -->
+    <div class="section-title">§6. Рейди</div>
+    <div class="card">
+        <div class="rule-num">§6.1</div>
+        <div>Проведення рейдів, що створюють хаос без вагомої RP-причини.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Безстрокова депортація</div>
+    </div>
+
+    <!-- §7 -->
+    <div class="section-title">§7. Атака / DeathMatch</div>
+    <div class="card">
+        <div class="rule-num">§7.1 / §7.2</div>
+        <div>RDM / VDM (напад або вбивство без RP-причини).</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Депорт 1 день або штраф 8000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§7.3</div>
+        <div>DM (напад без RP-причин) від 2 ударів.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф або депорт (залежить від тяжкості)</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§7.4</div>
+        <div>RK (Revenge Kill).</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Депорт 1 день</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§7.5</div>
+        <div>PG (PowerGaming – нереалістичні дії).</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 6500€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§7.6</div>
+        <div>Відсутність Fear RP.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Депорт 1 доба або штраф 8000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§7.7</div>
+        <div>NRP (нереалістична поведінка).</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Депорт 1-10 днів або штраф 8000€</div>
+    </div>
+
+    <!-- §8 -->
+    <div class="section-title">§8. Зовнішній вигляд / скіни</div>
+    <div class="card">
+        <div class="rule-num">§8.1</div>
+        <div>Образливі скіни, форма спецслужб, провокаційні ніки.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Попередження → тимчасовий / постійний депорт</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§8.2</div>
+        <div>Скіни тварин без правильного відігравання.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Депорт до 5 діб (або до 3 діб для аніматорів)</div>
+    </div>
+
+    <!-- §9 -->
+    <div class="section-title">§9. Уникнення покарання</div>
+    <div class="card">
+        <div class="rule-num">§9.1</div>
+        <div>Обхід штрафів, банів через твінки тощо.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Депорт до 3 діб / назавжди (при обході бану)</div>
+    </div>
+
+    <!-- §10 -->
+    <div class="section-title">§10. Non-RP поведінка</div>
+    <div class="card">
+        <div class="rule-num">§10.1</div>
+        <div>Combat Logging (вихід під час RP).</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Депорт 1 день</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§10.2</div>
+        <div>MetaGaming.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Депорт 1 день</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§10.3</div>
+        <div>PowerGaming.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 7500€ або депорт 1 день</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§10.4</div>
+        <div>Fail RP.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 4500€ або депорт 1 день</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§10.5</div>
+        <div>Відсутність Fear RP.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Депорт 1 день</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§10.6</div>
+        <div>CopBaiting.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 6700€ або депорт 1 день</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§10.7</div>
+        <div>Вбивство AFK персонажа.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 8000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§10.8</div>
+        <div>Bug Abuse.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Депорт 1 день</div>
+    </div>
+
+    <!-- §12 -->
+    <div class="section-title">§12. Суд</div>
+    <div class="card">
+        <div class="rule-num">§12.1</div>
+        <div>Тиск на суддю / офіцера / адвоката.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 2500€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§12.2</div>
+        <div>Прикриття знайомих або друзів суддею.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Зняття з посади</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§12.3</div>
+        <div>Халатність з боку судді.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 3000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§12.4</div>
+        <div>Використання суддівських повноважень для особистої вигоди.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Зняття з посади</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§12.5</div>
+        <div>Неадекватна поведінка в залі суду.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 1200€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§12.6</div>
+        <div>Перебивання Судді / Адвоката.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 1200€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§12.7</div>
+        <div>Напад / бійка у залі суду.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: КПЗ</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§12.8</div>
+        <div>Ігнорування рішення суду.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Депорт 1 день</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§12.9</div>
+        <div>Ігнорування RP-зауваження охорони суду.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Депорт 1 день</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§12.10</div>
+        <div>Кафф без RP-причин.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Депорт 1 день</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§12.11</div>
+        <div>Знаходитися на території залу суду можуть тільки адвокати, судді, офіцери та затримані.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 3000€</div>
+    </div>
+
+    <!-- §13 -->
+    <div class="section-title">§13. Голосовий чат</div>
+    <div class="card">
+        <div class="rule-num">§13.2</div>
+        <div>Сторонні гучні звуки, музика без згоди.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Штраф 5000€ або депорт до 3 діб</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§13.3</div>
+        <div>Російська пропаганда.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Депорт назавжди</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§13.4</div>
+        <div>Російська музика в голосовому чаті.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Депорт до 2 діб</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§13.5</div>
+        <div>Перебивання, створення шуму в голосовому чаті.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Депорт до 2 діб або кік</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§13.6</div>
+        <div>Войсченджер, використання ПО для зміни реального голосу.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Депорт до 5 діб</div>
+    </div>
+
+    <!-- §14 -->
+    <div class="section-title">§14. Спам та реклама</div>
+    <div class="card">
+        <div class="rule-num">§14.1</div>
+        <div>Спам в чаті, масові запрошення в групи тощо.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Тимчасовий / постійний депорт</div>
+    </div>
+
+    <!-- §15 -->
+    <div class="section-title">§15. Мітінг</div>
+    <div class="card">
+        <div class="rule-num">§15.1</div>
+        <div>Використання зброї на мітингу.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 8000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§15.2</div>
+        <div>Участь у мітингу.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 1000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§15.3</div>
+        <div>Перекриття дороги під час мітингу.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 5000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§15.4</div>
+        <div>Використання піротехніки на мітингу.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 8000€</div>
+    </div>
+
+    <!-- §16 -->
+    <div class="section-title">§16. Bunnyhop (Bhop)</div>
+    <div class="card">
+        <div class="rule-num">§16.1</div>
+        <div>Безперервні стрибки для прискорення / переваги в бою.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Попередження → депорт 2 доби</div>
+    </div>
+
+    <!-- §17 -->
+    <div class="section-title">§17. Корупція</div>
+    <div class="card">
+        <div class="rule-num">§17.1</div>
+        <div>Пропозиція хабара.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф від 4000-16000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§17.2</div>
+        <div>Прийняття хабара.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 5500€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§17.3</div>
+        <div>Посередництво у корупційних діях.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 4000€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§17.4</div>
+        <div>Приховування корупції.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 5000€</div>
+    </div>
+
+    <!-- §18 -->
+    <div class="section-title">§18. Привласнення території</div>
+    <div class="card">
+        <div class="rule-num">§18.1</div>
+        <div>Незаконне привласнення чужої території.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Штраф 4500€ або депорт до 2 діб</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§18.2</div>
+        <div>Проникнення на чужу привласнену територію.</div>
+        <div class="punishment">ПОКАРАННЯ: Попередження або штраф 4500€</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§18.3</div>
+        <div>Перешкоджання діям екстрених служб.</div>
+        <div class="punishment">ПОКАРАННЯ: Штраф 4500€</div>
+    </div>
+
+    <!-- §19 -->
+    <div class="section-title">§19. Чити та баги</div>
+    <div class="card">
+        <div class="rule-num">§19.1</div>
+        <div>Використання читів, стороннього ПЗ, багів.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Безстрокова депортація</div>
+    </div>
+
+    <!-- §20 -->
+    <div class="section-title">§20. Вихід під час RP</div>
+    <div class="card">
+        <div class="rule-num">§20.1</div>
+        <div>Вихід з сервера під час активної RP-сцени / переслідування.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Попередження → депорт 4 доби</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§20.2</div>
+        <div>У кайданах не можна заходити на територію своєї фракції.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Депорт 3 доби</div>
+    </div>
+
+    <!-- §21 -->
+    <div class="section-title">§21. Піротехніка</div>
+    <div class="card">
+        <div class="rule-num">§21.1</div>
+        <div>Використання піротехніки у людних місцях.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Попередження → депорт 2 доби</div>
+    </div>
+    <div class="card">
+        <div class="rule-num">§21.2</div>
+        <div>Напад на гос.структури з використанням піротехніки.</div>
+        <div class="punishment punishment-ban">ПОКАРАННЯ: Депорт 1 доба</div>
+    </div>
+
 </body>
 </html>
-
